@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Challenge participation
+  submissions Submission[]
+  teams       TeamMember[]
+  
+  @@map("users")
+}
+
+model Challenge {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  content     String?  // Rich text content
+  status      String   @default("active") // active, completed, archived
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Challenge details
+  category    String?  // autonomy, ai-security, energy-resilience
+  difficulty  String?  // beginner, intermediate, advanced
+  prize       String?
+  
+  // Relations
+  submissions Submission[]
+  
+  @@map("challenges")
+}
+
+model Submission {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  content     String?  // Rich text content
+  status      String   @default("draft") // draft, submitted, reviewed, winner
+  score       Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  challengeId String
+  challenge   Challenge @relation(fields: [challengeId], references: [id])
+  
+  @@map("submissions")
+}
+
+model Team {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  members     TeamMember[]
+  
+  @@map("teams")
+}
+
+model TeamMember {
+  id       String @id @default(cuid())
+  role     String @default("member") // member, leader
+  
+  // Relations
+  userId   String
+  user     User   @relation(fields: [userId], references: [id])
+  teamId   String
+  team     Team   @relation(fields: [teamId], references: [id])
+  
+  @@unique([userId, teamId])
+  @@map("team_members")
+}

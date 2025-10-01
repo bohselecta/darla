@@ -1,103 +1,129 @@
 import Image from "next/image";
+import MagazineSection from "@/components/MagazineSection";
+import HeroCTAs from "@/components/HeroCTAs";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="bg-dark-bg text-white">
+      {/* Hero */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/honeycomb-bg.png"
+            alt="Background"
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover opacity-60"
+            priority
+          />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        
+        <div className="relative z-10 max-w-4xl text-center px-6">
+          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-cyan-400 font-orbitron">
+            ADVANCE by DARLA
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-white/80 font-inter">
+            Civilian-accessible engineering moonshots. Transparent, measurable,
+            patriotic. <br /> Join challenges that define the next generation of
+            defense and discovery.
+          </p>
+          <HeroCTAs />
+        </div>
+      </section>
+
+      {/* Section 1: Autonomy */}
+      <MagazineSection
+        image="/images/drone-tunnel.png"
+        heading="Autonomy in the Unknown"
+        body="From subterranean mazes to collapsed cities, autonomy defines survival. Our SubT-Lite Challenge calls on teams to build robots that map, navigate, and rescue where humans cannot. Dust, darkness, and broken comms — this is your proving ground."
+        cta="View SubT-Lite Challenge"
+        ctaLink="/challenges/subt-lite"
+      />
+
+      {/* Section 2: AI Security */}
+      <MagazineSection
+        image="/images/cyber-globe.png"
+        heading="AI for Defense & Security"
+        body="Every day, vulnerabilities are discovered. Imagine an AI agent that finds, patches, and secures systems before adversaries can exploit them. With the AI Patchwork Challenge, coders and hackers compete to secure the backbone of our digital world."
+        cta="Explore AI Patchwork"
+        ctaLink="/challenges/ai-patchwork"
+        reverse
+      />
+
+      {/* Section 3: Energy Resilience */}
+      <MagazineSection
+        image="/images/solar-flare.png"
+        heading="Energy & Resilience"
+        body="Wars of the future may be won on resilience, not firepower. How do we stabilize microgrids under fire? How do we recover in minutes, not hours? The Resilient Microgrid Challenge dares innovators to keep the lights on when it matters most."
+        cta="See Microgrid Challenge"
+        ctaLink="/challenges/microgrid"
+      />
+
+      {/* Section 4: Showcase Winner */}
+      <section className="relative py-32 bg-black/80">
+        <div className="absolute inset-0">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/images/robotdog-peak.png"
+            alt="Robot Dog with Soldier"
+            width={1920}
+            height={1080}
+            className="w-full h-full object-cover opacity-30"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-bold text-cyan-400 font-orbitron">
+            2024 Winner: The Path Forward
+          </h2>
+          <p className="mt-6 text-white/80 text-lg leading-relaxed font-inter">
+            Teams of students, veterans, and garage builders advanced robotics
+            beyond expectation. This is the legacy: partnership between human
+            and machine, tested in terrain where every step matters.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 5: Lunar Frontiers */}
+      <MagazineSection
+        image="/images/moonbase.png"
+        heading="Lunar Frontiers"
+        body="Within the decade, multiple nations will establish permanent outposts on the Moon. Advance by DARLA asks: how do we defend, stabilize, and thrive in contested space? The Lunar Defense Challenge will test autonomous systems, resource management, and strategic positioning in the ultimate frontier."
+        cta="Preview Lunar Defense Challenge"
+        ctaLink="/challenges/lunar-defense"
+        reverse
+      />
+
+      {/* Footer */}
+      <footer className="bg-dark-secondary py-12 text-center text-white/60 text-sm font-inter">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="mb-6">
+            <h3 className="text-xl font-bold text-cyan-400 font-orbitron mb-2">DARLA</h3>
+            <p className="text-white/80">
+              Civilian-accessible moonshots. Transparent, measurable, patriotic.
+            </p>
+          </div>
+          <div className="flex justify-center gap-6 mb-6">
+            <a href="/about" className="hover:text-white transition-colors duration-200">
+              About
+            </a>
+            <a href="/press" className="hover:text-white transition-colors duration-200">
+              Press
+            </a>
+            <a href="/terms" className="hover:text-white transition-colors duration-200">
+              Terms
+            </a>
+            <a href="/contact" className="hover:text-white transition-colors duration-200">
+              Contact
+            </a>
+          </div>
+          <div className="mb-4 p-4 rounded-lg bg-white/5 border border-white/10">
+            <p className="text-white/70 text-xs leading-relaxed">
+              <strong>Disclaimer:</strong> DARLA does not exist. This is a creative exercise in military branding for &ldquo;DARLA Challenges&rdquo; by a civilian designer. 
+              All content, challenges, and branding are fictional and created for design demonstration purposes only.
+            </p>
+          </div>
+          <p>© 2025 DARLA. All rights reserved.</p>
+        </div>
       </footer>
-    </div>
+    </main>
   );
 }
